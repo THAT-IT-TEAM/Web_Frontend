@@ -1,23 +1,19 @@
-import Spline from "@splinetool/react-spline";
 import { motion } from "motion/react";
+import PopUP from "./PopUp";
+import { InfiniteMovingCards } from "./InfiniteMovingCards";
 
 const MainPage = () => {
   return (
     <motion.div
-      className=" bg-stone-950 relative w-full h-screen overflow-hidden"
+      className=" bg-gradient-dark bg-[length:120%_120%] animate-gradient-pan w-full h-auto"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <Spline
-        scene="https://prod.spline.design/5l5mWlgmR61-YoIa/scene.splinecode"
-        className="absolute top-0 left-0 w-full h-full z-0"
-      />
-      <div className="bg-transparent z-10 h-[40vh]"></div>
-      <div className="relative z-10 p-10 h-[60vh] rounded text-white bg-stone-950 ">
-        <h1 className="text-4xl font-bold">Welcome to My Site</h1>
-        <p>This content is overlaid on top of the Spline background.</p>
+      <PopUP />
+      <div className="h-[35rem] rounded-md flex flex-col antialiased bg-white dark:bg-transparent dark:bg-grid-white/[0.05] items-center justify-center relative overflow-hidden">
+        <InfiniteMovingCards direction="right" speed="slow" />
       </div>
     </motion.div>
   );
