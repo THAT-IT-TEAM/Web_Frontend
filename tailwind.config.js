@@ -39,6 +39,14 @@ export default {
           },
         },
       },
+      boxShadow: {
+        neumorphic: `
+          -15px -15px 15px rgba(0, 0, 0, 0.2),
+          15px 15px 15px rgba(0, 0, 0, 0.1),
+          inset -5px -5px 5px rgba(0, 0, 0, 0.2),
+          inset 5px 5px 5px rgba(0, 0, 0, 0.1)
+        `,
+      },
     },
   },
   plugins: [],
