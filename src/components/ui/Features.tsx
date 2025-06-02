@@ -42,9 +42,9 @@ const Features: React.FC<CardProps> = ({
       <motion.div
         style={{
           scale,
-          top: `calc(-5vh + ${i * 25}px)`,
+          top: `calc(-5vh + ${i * 16}px)`,
         }}
-        className="flex flex-col relative -top-1/4 h-[500px] w-[1000px] rounded-[25px] p-[50px] origin-top bg-[#1f1f22] shadow-neumorphic "
+        className="flex flex-col relative -top-1/4 h-[500px] w-[1000px] rounded-[25px] p-[50px] origin-top bg-[#161616] shadow-neumorphic border border-gray-50 "
       >
         <h2 className="text-center m-0 text-[38px] text-bold text-white">
           {title}

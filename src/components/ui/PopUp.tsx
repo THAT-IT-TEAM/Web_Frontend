@@ -27,7 +27,7 @@ const PopUP = () => {
   return (
     <div
       ref={containerRef}
-      className="h-[190vh] w-full bg-transparent z-10 flex flex-col items-center py-[400px] [perspective:1200px] "
+      className="h-[190vh] w-full bg-transparent z-10 flex flex-col items-center py-[400px] [perspective:1200px] relative "
     >
       <motion.h1
         style={{
@@ -48,9 +48,9 @@ const PopUP = () => {
           y: translateY,
           scale: scale,
         }}
-        className="w-[65%] rounded-3xl -mt-6 h-[700px] bg-white shadow-2xl p-2 border border-neutral-100 [transform-style:preserve-3d]"
+        className="w-[65%] rounded-3xl -mt-6 h-[700px] bg-white shadow-2xl p-1 border border-neutral-100 [transform-style:preserve-3d]"
       >
-        <div className="bg-black h-full w-full rounded-[16px] p-2">
+        <div className="bg-black h-full w-full rounded-[20px] p-2">
           <div className="bg-neutral-100 h-full w-full rounded-[12px]">
             <img
               src="src\assets\images\shadcn.png"

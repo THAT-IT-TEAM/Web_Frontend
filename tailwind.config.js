@@ -11,6 +11,13 @@ export default {
     extend: {
       fontFamily: {
         title: ["BrunoAceSC"],
+        impact: ["impact"],
+        kicker: ["kicker"],
+        nikea: ["NIKEA"],
+        eudoxussans: ["EudoxusSans"],
+        hanyTrial: ["HanyTrial"],
+        tommy: ["Tommy"],
+        ortland: ["Ortland"],
       },
       backgroundImage: {
         "gradient-dark": "linear-gradient(136deg, #1b1b1b, #000000)",

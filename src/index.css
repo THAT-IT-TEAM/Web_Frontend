@@ -7,3 +7,38 @@
   src: local("BrunoAceSC"),
     url("./assets/fonts/BrunoAceSC.ttf") format("truetype");
 }
+
+@font-face {
+  font-family: "impact";
+  src: local("impact"), url("./assets/fonts/impact.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Kicker";
+  src: local("Kicker"), url("./assets/fonts/Kicker.ttf") format("truetype");
+}
+@font-face {
+  font-family: "NIKEA";
+  src: local("NIKEA"), url("./assets/fonts/NIKEA.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "EudoxusSans";
+  src: local("EudoxusSans"),
+    url("./assets/fonts/EudoxusSans.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "HanyTrial";
+  src: local("HanyTrial"),
+    url("./assets/fonts/HanyTrial.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Tommy";
+  src: local("Tommy"), url("./assets/fonts/Tommy.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Ortland";
+  src: local("Ortland"), url("./assets/fonts/Ortland.otf") format("opentype");
+}
