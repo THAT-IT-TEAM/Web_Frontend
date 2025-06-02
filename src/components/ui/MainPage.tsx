@@ -69,6 +69,7 @@ const MainPage = () => {
           <Faq />
         </div>
         {/*Footer */}
+        <Footer />
       </motion.div>
     </>
   );
