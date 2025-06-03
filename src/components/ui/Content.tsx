@@ -30,14 +30,18 @@ const Nav = () => {
   return (
     <div className="flex shrink-0 gap-20">
       <div className="flex flex-col gap-2">
-        <h3 className="mb-2 uppercase text-[#ffffff80]">About</h3>
-        <p>Home</p>
+        <h3 className="mb-2 uppercase text-[#ffffff80] font-eudoxussans">
+          About
+        </h3>
+        <p className="">Home</p>
         <p>Projects</p>
         <p>Our Mission</p>
         <p>Contact Us</p>
       </div>
       <div className="flex flex-col gap-2">
-        <h3 className="mb-2 uppercase text-[#ffffff80]">Education</h3>
+        <h3 className="mb-2 uppercase text-[#ffffff80] font-eudoxussans">
+          Education
+        </h3>
         <p>News</p>
         <p>Learn</p>
         <p>Certification</p>
