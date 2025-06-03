@@ -116,14 +116,14 @@ export const InfiniteMovingCards: React.FC<InfiniteMovingCardsProps> = ({
         {items.map((item) => (
           <li
             key={item.name}
-            className="relative w-[350px] max-w-full shrink-0 rounded-2xl border border-gray-50 bg-[#161616] px-8 py-6 md:w-[450px] shadow-neumorphic"
+            className="relative w-[350px] max-w-full shrink-0 rounded-2xl border border-gray-50 bg-[#131313] px-8 py-6 md:w-[450px] shadow-neumorphic"
           >
             <blockquote>
               <div
                 aria-hidden="true"
                 className="user-select-none pointer-events-none absolute -top-0.5 -left-0.5 -z-1 h-[calc(100%_+_4px)] w-[calc(100%_+_4px)]"
               ></div>
-              <span className="relative z-20 text-xl leading-[1.6] font-normal text-neutral-800 dark:text-gray-100">
+              <span className="relative z-20 text-xl leading-[1.6] font-normal text-neutral-800 dark:text-gray-100 font-eudoxussans">
                 {item.quote}
               </span>
 
@@ -131,15 +131,15 @@ export const InfiniteMovingCards: React.FC<InfiniteMovingCardsProps> = ({
                 <img
                   src={item.image}
                   alt="profile"
-                  className="rounded-full object-cover px-2"
-                  height={65}
-                  width={65}
+                  className="rounded-full object-cover mx-2 border border-gray-50"
+                  height={60}
+                  width={60}
                 />
                 <span className="flex flex-col gap-1">
-                  <span className="text-lg leading-[1.6] font-bold text-neutral-500 dark:text-gray-400">
+                  <span className="text-lg leading-[1.6] font-bold text-neutral-500 dark:text-gray-400 font-tommy">
                     {item.name}
                   </span>
-                  <span className="text-md leading-[1.6] font-normal text-neutral-500 dark:text-gray-400">
+                  <span className="text-md leading-[1.6] font-normal text-neutral-500 dark:text-gray-400 font-eudoxussans">
                     {item.title}
                   </span>
                 </span>

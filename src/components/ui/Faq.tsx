@@ -57,7 +57,7 @@ const Faq = () => {
     },
   ];
   return (
-    <div className="container mx-auto mt-[20vh] overflow-x-hidden">
+    <div className="container mx-auto mt-[20vh] ">
       <FaqItems questions={upperQuestion} from={0} to={"-100%"} />
       <FaqItems questions={lowerQuestion} from={"-100%"} to={0} />
     </div>

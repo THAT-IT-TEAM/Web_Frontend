@@ -8,7 +8,7 @@ const Mission = () => {
   const size = isHovered ? 400 : 40;
   return (
     <>
-      <h1 className="font-bold text-7xl text-red-500 text-center mt-24 mb-24 uppercase">
+      <h1 className="font-bold text-7xl text-red-500 text-center mt-24 mb-24 uppercase font-kicker">
         Our Mission
       </h1>
       <main className={styles.main}>
@@ -27,20 +27,21 @@ const Mission = () => {
             onMouseLeave={() => {
               setIsHovered(false);
             }}
+            className="font-nikea text-5xl"
           >
             Our mission is to revolutionize expense tracking by combining the
             power of Web3 with seamless usability. We aim to create a
-            decentralized platform where teams, DAOs, and vendors can securely
-            manage and verify shared expenses without relying on centralized
-            tools. By leveraging Web3Auth for effortless login, IPFS for
-            tamper-proof receipt storage, and optional on-chain logging for
-            auditability, we provide a transparent, trustless, and user-friendly
-            solution that brings accountability and accessibility to modern
-            financial collaboration.
+            <span className="">decentralized</span> platform where teams, DAOs,
+            and vendors can securely manage and verify shared expenses without
+            relying on centralized tools. By leveraging <span>Web3Auth</span>{" "}
+            for effortless login, IPFS for tamper-proof receipt storage, and
+            optional on-chain logging for auditability, we provide a
+            transparent, trustless, and user-friendly solution that brings
+            accountability and accessibility to modern financial collaboration.
           </p>
         </motion.div>
         <div className={styles.body}>
-          <p>
+          <p className="font-nikea text-5xl">
             Our mission is to revolutionize expense tracking by combining the
             power of Web3, end-to-end <span>encryption</span>, and{" "}
             <span>decentralization</span>. We aim to create a secure,

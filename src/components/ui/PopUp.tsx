@@ -36,7 +36,7 @@ const PopUP = () => {
           opacity: textOpacity,
           filter: finalBlur,
         }}
-        className="text-8xl text-white font-bold text-center"
+        className="text-8xl text-white font-bold text-center font-kicker"
       >
         Track Expenses. Prove Everything <br />
         Trust Nothing Off-Chain.

@@ -14,7 +14,7 @@ const PricingCard = ({ items }: PriceCardProp) => {
     <div className="flex justify-center items-center gap-32 mt-[20vh] ">
       {items.map((tier, index) => (
         <div key={index} className="flex justify-center items-center">
-          <div className="w-[360px] h-[580px] flex flex-col rounded-3xl bg-black p-6 shadow-[0_0_25px_rgba(0,0,0,0.3)] border border-gray-50">
+          <div className="w-[360px] h-[580px] flex flex-col rounded-3xl bg-[#090909] p-6 shadow-[0_0_25px_rgba(0,0,0,0.3)] border border-gray-50">
             <p
               className="text-5xl font-semibold leading-none max-w-max"
               style={{
