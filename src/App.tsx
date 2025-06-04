@@ -3,6 +3,7 @@ import PreLoader from "./components/ui/PreLoader";
 import MainPage from "./components/ui/MainPage";
 import { AnimatePresence, motion } from "motion/react";
 import { ReactNode } from "react";
+import Login from "./components/ui/Login";
 
 function App() {
   const location = useLocation();
@@ -25,6 +26,7 @@ function App() {
             </PageWrapper>
           }
         />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </AnimatePresence>
   );

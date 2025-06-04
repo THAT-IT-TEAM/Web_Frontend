@@ -1,3 +1,4 @@
+import { IoPerson } from "react-icons/io5";
 import {
   AnimatePresence,
   motion,
@@ -6,6 +7,7 @@ import {
   useTransform,
 } from "motion/react";
 import { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const PopUP = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -25,6 +27,8 @@ const PopUP = () => {
 
   const finalBlur = useMotionTemplate`blur(${blur}px)`;
 
+  const navigate = useNavigate();
+
   const user =
     "https://assets.justinmind.com/wp-content/uploads/2020/02/dashboard-examples-social-media.png";
 
@@ -37,12 +41,50 @@ const PopUP = () => {
     const image = userInterface === admin ? user : admin;
     setUserInterface(image);
   };
+
+  const handleLoginPage = () => {
+    navigate("/login");
+  };
   return (
     <AnimatePresence>
       <div
         ref={containerRef}
-        className="h-[190vh] w-full bg-transparent z-10 flex flex-col items-center py-[400px] [perspective:1200px] relative "
+        className="h-[190vh] w-full bg-transparent z-10 flex flex-col items-center  [perspective:1200px] relative "
       >
+        <div className="h-[20vh] bg-transparent w-full">
+          <div className="bg-black h-[10vh] flex items-center">
+            <div>
+              <h1 className="text-white font-ortland text-5xl px-6">
+                Expensync
+              </h1>
+            </div>
+            <div className="text-white absolute right-20">
+              <ul className="flex">
+                <a href="/main" className="px-5 font-ortland text-2xl">
+                  HOME
+                </a>
+                <a href="/about" className="px-5 font-ortland text-2xl">
+                  ABOUT
+                </a>
+                <a href="/contact" className="px-5 font-ortland text-2xl">
+                  CONTACT
+                </a>
+              </ul>
+            </div>
+            <div className="absolute right-0 px-5">
+              {/* <img
+                src="src\assets\images\login icon.png"
+                className="object-fill"
+                height={50}
+                width={50}
+              /> */}
+              <IoPerson
+                className="text-white w-9 h-9"
+                onClick={() => handleLoginPage()}
+              />
+            </div>
+          </div>
+        </div>
         <motion.h1
           style={{
             scale: textScale,
@@ -50,7 +92,7 @@ const PopUP = () => {
             opacity: textOpacity,
             filter: finalBlur,
           }}
-          className="text-8xl text-white font-bold text-center font-kicker"
+          className="text-8xl text-white font-bold text-center font-kicker mt-[10vh]"
         >
           Track Expenses. Prove Everything <br />
           Trust Nothing Off-Chain.
