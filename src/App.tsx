@@ -4,6 +4,7 @@ import MainPage from "./components/ui/MainPage";
 import { AnimatePresence, motion } from "motion/react";
 import { ReactNode } from "react";
 import Login from "./components/ui/Login";
+import User from "./components/ui/User/User";
 
 function App() {
   const location = useLocation();
@@ -27,6 +28,7 @@ function App() {
           }
         />
         <Route path="/login" element={<Login />} />
+        <Route path="/user" element={<User />} />
       </Routes>
     </AnimatePresence>
   );

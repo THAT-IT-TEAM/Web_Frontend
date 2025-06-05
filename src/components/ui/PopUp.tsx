@@ -35,12 +35,13 @@ const PopUP = () => {
   const admin = "src/assets/images/shadcn.png";
 
   const [userInterface, setUserInterface] = useState<string>(admin);
-  const [visibility, setVisibility] = useState<boolean>(true);
 
   const changeInterface = () => {
     const image = userInterface === admin ? user : admin;
     setUserInterface(image);
   };
+
+  const buttonText = userInterface === admin ? "User" : "Admin";
 
   const handleLoginPage = () => {
     navigate("/login");
@@ -51,7 +52,7 @@ const PopUP = () => {
         ref={containerRef}
         className="h-[190vh] w-full bg-transparent z-10 flex flex-col items-center  [perspective:1200px] relative "
       >
-        <div className="h-[20vh] bg-transparent w-full">
+        <div className="h-[20vh] bg-transparent w-full ">
           <div className="bg-black h-[10vh] flex items-center">
             <div>
               <h1 className="text-white font-ortland text-5xl px-6">
@@ -118,15 +119,15 @@ const PopUP = () => {
             </div>
           </div>
         </motion.div>
+        <button
+          className="elegant-btn relative overflow-hidden px-6 py-3 border-2 border-[#2c2c2c] bg-[#1a1a1a] text-white text-[1.2rem] font-bold rounded-full transition-all duration-400 ease-in-out hover:border-[#666666] hover:bg-[#292929] font-eudoxussans mx-[50%] mt-[20%]"
+          onClick={() => {
+            changeInterface();
+          }}
+        >
+          {buttonText}
+        </button>
       </div>
-      <button
-        className=" m-4 bg-white text-black mt-8 px-6 py-3 rounded-lg font-bold mx-[50%]"
-        onClick={() => {
-          changeInterface();
-        }}
-      >
-        User
-      </button>
     </AnimatePresence>
   );
 };
