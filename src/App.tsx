@@ -2,9 +2,9 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import PreLoader from "./components/ui/PreLoader";
 import MainPage from "./components/ui/MainPage";
 import { AnimatePresence, motion } from "motion/react";
-import { ReactNode } from "react";
 import Login from "./components/ui/Login";
 import User from "./components/ui/User/User";
+import Admin from "./components/ui/Admin/Admin";
 
 function App() {
   const location = useLocation();
@@ -29,6 +29,7 @@ function App() {
         />
         <Route path="/login" element={<Login />} />
         <Route path="/user" element={<User />} />
+        <Route path="/admin" element={<Admin />} />
       </Routes>
     </AnimatePresence>
   );

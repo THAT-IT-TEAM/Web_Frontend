@@ -1,35 +1,49 @@
+import { ReactLenis } from "lenis/react";
+import type { LenisRef } from "lenis/react";
 import { motion, useScroll } from "motion/react";
+import { cancelFrame, frame } from "framer-motion";
 import PopUP from "./PopUp";
 import { InfiniteMovingCards } from "./InfiniteMovingCards";
 import { projects } from "../../Data/FeaturesData";
 import Card from "./FeaturesCard";
-import { useRef } from "react";
-import { ReactLenis, useLenis } from "lenis/react";
+import { useEffect, useRef } from "react";
 import Mission from "./Mission";
 import PriceComponent from "./PriceComponent";
 import Faq from "./Faq";
 import Footer from "./Footer";
 
 const MainPage = () => {
-  const lenis = useLenis();
-
   const container = useRef(null);
   const { scrollYProgress } = useScroll({
     target: container,
     offset: ["start start", "end end"],
   });
+
+  const lenisRef = useRef<LenisRef>(null);
+
+  useEffect(() => {
+    function update(data: { timestamp: number }) {
+      const time = data.timestamp;
+      lenisRef.current?.lenis?.raf(time);
+    }
+
+    frame.update(update, true);
+
+    return () => cancelFrame(update);
+  }, []);
+
   return (
     <>
-      <ReactLenis root />
+      <ReactLenis root options={{ autoRaf: false }} ref={lenisRef} />
       <motion.div className=" bg-gradient-dark bg-[length:120%_120%] animate-gradient-pan w-full h-auto overflow-clip">
         <PopUP />
-        <div className="h-[35rem] rounded-md flex flex-col antialiased bg-white dark:bg-transparent dark:bg-grid-white/[0.05] items-center justify-center relative overflow-hidden">
+        <div className="h-[35rem] rounded-md flex flex-col antialiased bg-white dark:bg-transparent dark:bg-grid-white/[0.05] items-center justify-center translate-y-60 overflow-hidden">
           <InfiniteMovingCards direction="right" speed="slow" />
         </div>
 
         {/*Features */}
 
-        <div className=" w-full text-5xl font-bold text-white flex justify-center mt-[17vh] relative font-kicker">
+        <div className=" w-full text-5xl font-bold text-white flex justify-center mt-[30vh] relative  font-kicker">
           Features
         </div>
         <div ref={container} className="relative">

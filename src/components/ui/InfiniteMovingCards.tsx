@@ -116,7 +116,7 @@ export const InfiniteMovingCards: React.FC<InfiniteMovingCardsProps> = ({
         {items.map((item) => (
           <li
             key={item.name}
-            className="relative w-[350px] max-w-full shrink-0 rounded-2xl border border-gray-50 bg-[#131313] px-8 py-6 md:w-[450px] shadow-neumorphic"
+            className="relative w-[350px] max-w-full shrink-0 rounded-2xl border border-gray-50 bg-[#141414] px-8 py-6 md:w-[450px] shadow-neumorphic"
           >
             <blockquote>
               <div

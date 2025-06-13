@@ -16,9 +16,18 @@ const Section1 = () => {
 };
 
 const Section2 = () => {
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth", // adds a smooth scrolling animation
+    });
+  };
   return (
     <div className="flex justify-between items-end">
-      <h1 className="text-[14vw] leading-[0.8] mt-10 font-ortland">
+      <h1
+        className="text-[14vw] leading-[0.8] mt-10 font-ortland"
+        onClick={scrollToTop}
+      >
         Expensync
       </h1>
       <p>©copyright</p>

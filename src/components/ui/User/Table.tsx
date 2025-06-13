@@ -303,7 +303,7 @@ export default function ExpenseTable(): ReactElement {
           onClick={() => handlePageChange(pageNumber)}
           className={`w-10 h-10 rounded-lg border transition-colors ${
             currentPage === pageNumber
-              ? "bg-gray-400 border-gray-50 text-white"
+              ? "bg-blue-500 border-gray-50 text-white"
               : "bg-[#161616] border-gray-50 text-gray-300 hover:bg-gray-400"
           }`}
         >
@@ -314,7 +314,7 @@ export default function ExpenseTable(): ReactElement {
   };
 
   return (
-    <div className="bg-[#141414] text-white h-auto rounded-2xl p-4 md:p-6 w-[140vh] border border-[#1c1c1c] shadow-neumorphic">
+    <div className="bg-[#141414] text-white h-auto rounded-2xl p-6  w-[162vh] border border-gray-50 shadow-neumorphic">
       <div className=" w-auto mx-auto">
         {/* Header with Search and Filter Toggle */}
         <div className="mb-6 space-y-4">
@@ -486,9 +486,6 @@ export default function ExpenseTable(): ReactElement {
                 <th className="px-6 py-4 text-left text-sm font-medium text-gray-300 uppercase tracking-wider">
                   Status
                 </th>
-                <th className="px-6 py-4 text-left text-sm font-medium text-gray-300 uppercase tracking-wider">
-                  On-Chain Hash
-                </th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-700">
@@ -513,9 +510,6 @@ export default function ExpenseTable(): ReactElement {
                     <span className={getStatusBadge(expense.status)}>
                       {expense.status}
                     </span>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400 font-mono">
-                    {expense.onChainHash}
                   </td>
                 </tr>
               ))}

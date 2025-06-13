@@ -2,10 +2,9 @@ import { useTransform, useScroll, motion } from "motion/react";
 import { useRef } from "react";
 const Card = ({
   i,
+  src,
   title,
   description,
-  src,
-  color,
   progress,
   range,
   targetScale,
@@ -29,7 +28,7 @@ const Card = ({
           scale,
           top: `calc(-5vh + ${i * 25}px)`,
         }}
-        className="flex flex-col relative -top-[25%] h-[500px] w-[1000px] rounded-[25px] p-[50px] origin-top bg-[#101010] border border-gray-50 text-white shadow-neumorphic"
+        className="flex flex-col relative -top-[25%] h-[500px] w-[1000px] rounded-[25px] p-[50px] origin-top bg-[#141414] border border-gray-50 text-white shadow-neumorphic"
       >
         <h2 className="text-center m-0 text-[28px] font-nikea text-red-500">
           {title}
