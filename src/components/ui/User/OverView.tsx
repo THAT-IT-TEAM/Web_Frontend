@@ -2,7 +2,7 @@ import FilesUpload from "./FilesUpload";
 const OverView = () => {
   return (
     <div className="p-6 m-6 rounded-2xl  bg-[#141414] border border-gray-50 relative">
-      <FilesUpload />
+      {/* <FilesUpload /> */}
       <h1 className=" text-white font-impact text-4xl mb-6 ml-3 ">Overview</h1>
       <div className="h-auto ">
         <div className="flex gap-14 justify-center">
