@@ -199,7 +199,7 @@ class ApiService {
   }
 
   async updateRecord(table: string, id: string, data: any) {
-    const response = await this.client.put(`/api/${table}/${id}`, data);
+    const response = await this.client.put(`${API_BASE_URL}/api/${table}/${id}`, data);
     return response.data;
   }
 

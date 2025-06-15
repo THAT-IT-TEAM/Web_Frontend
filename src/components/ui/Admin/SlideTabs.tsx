@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 type Position = {
   left: number;
@@ -26,7 +27,7 @@ export const SlideTabs = () => {
       className="relative mx-auto flex w-fit rounded-full border-2 border-gray-50 bg-[#161616] p-1 -translate-x-32 font-Mollen"
     >
       <Tab setPosition={setPosition}>Dashboard</Tab>
-      <Tab setPosition={setPosition}>Expense</Tab>
+      <Tab setPosition={setPosition}>Trips</Tab>
       <Tab setPosition={setPosition}>Vendors</Tab>
       <Tab setPosition={setPosition}>Reports</Tab>
       <Tab setPosition={setPosition}>Team</Tab>
@@ -44,6 +45,7 @@ const Tab = ({
   setPosition: Dispatch<SetStateAction<Position>>;
 }) => {
   const ref = useRef<null | HTMLLIElement>(null);
+  const navigate = useNavigate();
 
   return (
     <li
@@ -60,6 +62,10 @@ const Tab = ({
         });
       }}
       className="relative z-10 block cursor-pointer px-3 py-1.5 text-xs uppercase text-white mix-blend-difference md:px-5 md:py-3 md:text-base"
+      onClick={()=>{
+        if(children==='Trips')navigate("/trips")
+        else if (children==="Dashboard")navigate("/admin")
+        }}
     >
       {children}
     </li>

@@ -80,7 +80,7 @@ const NewTrip = () => {
           Add New Trip
         </h1>
         <SpotlightCard>
-          <div className="border border-gray-50 h-[600px] w-[500px] rounded-2xl flex flex-col justify-center items-center">
+          <div className="border border-gray-50 h-[600px] w-[500px] rounded-2xl flex flex-col justify-center items-center font-eudoxussans">
             <div className="relative w-4/5 mt-5 mb-3">
               <input
                 type="text"
@@ -101,7 +101,7 @@ const NewTrip = () => {
                 Name
               </label>
             </div>
-            <div className="relative w-4/5 mt- mb-3">
+            <div className="relative w-4/5 mt-4 mb-3">
               <input
                 type="text"
                 name="description"
@@ -121,7 +121,7 @@ const NewTrip = () => {
                 Description
               </label>
             </div>
-            <div className="relative w-4/5 mt- mb-3">
+            <div className="relative w-4/5 mt-4 mb-3">
               <input
                 type="text"
                 name="budget"
@@ -141,7 +141,7 @@ const NewTrip = () => {
                 Budget
               </label>
             </div>
-            <div className="relative w-4/5 mt- mb-3">
+            <div className="relative w-4/5 mt-4 mb-3">
               <input
                 type="text"
                 name="startDate"
@@ -161,7 +161,7 @@ const NewTrip = () => {
                 Start Date [DD/MM/YYYY]
               </label>
             </div>
-            <div className="relative w-4/5 mt- mb-3">
+            <div className="relative w-4/5 mt-4 mb-3">
               <input
                 type="text"
                 name="endDate"
@@ -181,7 +181,7 @@ const NewTrip = () => {
                 End Date [DD/MM/YYYY]
               </label>
             </div>
-           <div className="relative w-4/5 mt- mb-3">
+           <div className="relative w-4/5 mt-4 mb-3">
       <input
         type="email" // Changed to email type for better validation
         name="userEmail"

@@ -45,7 +45,9 @@ export default {
             transform: "translate(calc(-50% - 0.5rem))",
           },
         },
+
       },
+
       boxShadow: {
         neumorphic: `
           -15px -15px 15px rgba(0, 0, 0, 0.2),

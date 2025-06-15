@@ -1,5 +1,7 @@
 import { useState, ReactElement } from "react";
 import { Search, ChevronLeft, ChevronRight, Filter, X } from "lucide-react";
+import api from "../api";
+
 
 // Type definitions
 interface Expense {

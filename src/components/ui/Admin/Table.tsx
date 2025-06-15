@@ -1,9 +1,13 @@
-import { useState, ReactElement } from "react";
+import { useState, ReactElement ,useEffect} from "react";
 import { IoIosClose } from "react-icons/io";
-import { Search, ChevronLeft, ChevronRight, Filter, X } from "lucide-react";
+import { Search, ChevronLeft, ChevronRight, Filter, X, } from "lucide-react";
+import api from "../api"; // adjust the path if necessary
+import Loader from "../SquareLoader";
+
 
 // Type definitions
 interface Expense {
+    supaId:number;
   id: number;
   vendorName: string;
   submittedBy: string;
@@ -39,183 +43,112 @@ export default function ExpenseTable(): ReactElement {
   const [showFilters, setShowFilters] = useState<boolean>(false);
   const [showImage, setShowImage] = useState<boolean>(false);
   const [changeStatus, setChangeStatus] = useState<boolean>(false);
+  const [status,setStatus] = useState<string>("pending")
   const [currentExpense, setCurrentExpense] = useState<Expense | null>(null);
 
+  // Function to update expense data
+  const handleUpdateExpense = async (expenseId: number, updatedData: Partial<Expense>) => {
+    try {
+      setLoading(true);
+        await api.updateRecord("Dashboard", expenseId.toString(), {
+        vendor_name: updatedData.vendorName,
+        submitted_by: updatedData.submittedBy,
+        project_name: updatedData.projectName,
+        receipt_url: updatedData.receiptPreview,
+        expense_type: updatedData.expenseType,
+        submission_date: updatedData.submissionDate,
+        amount: updatedData.amount,
+        status: updatedData.status,
+        on_chain_hash: updatedData.onChainHash
+      });
+
+      setExpenses(prev => prev.map(exp => exp.id === expenseId ? { ...exp, ...updatedData } : exp));
+      setError(null);
+    } catch (err) {
+      console.error("Error updating expense:", err);
+      setError("Failed to update expense. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Function to handle status change
+//   const handleStatusChange = async (expenseId: number, newStatus: ExpenseStatus) => {
+//     await handleUpdateExpense(expenseId, { status: newStatus });
+//     setChangeStatus(false);
+//     setCurrentExpense(null);
+//   };
+
   // Sample data - expanded for better pagination demonstration
-  const expenses: Expense[] = [
-    {
-      id: 1,
-      vendorName: "Tech Solutions Inc.",
-      submittedBy: "Rohit Varma",
-      projectName: "Quarterly Conference",
-      receiptPreview: "imagelink",
-      expenseType: "Software",
-      submissionDate: "2024-07-20",
-      amount: 12500,
-      status: "Verified",
-      onChainHash: "0xabc123",
-      actions: "Approve",
-    },
-    {
-      id: 2,
-      vendorName: "Office Supplies Co.",
-      submittedBy: "Rohit Varma",
-      projectName: "Quarterly Conference",
-      receiptPreview: "imagelink",
-      expenseType: "Supplies",
-      submissionDate: "2024-07-18",
-      amount: 3200,
-      status: "Pending",
-      onChainHash: "0xdef456",
-      actions: "Approve",
-    },
-    {
-      id: 3,
-      vendorName: "Marketing Pros LLC",
-      submittedBy: "Rohit Varma",
-      projectName: "Quarterly Conference",
-      receiptPreview: "imagelink",
-      expenseType: "Marketing",
-      submissionDate: "2024-07-15",
-      amount: 8750,
-      status: "Verified",
-      onChainHash: "0xghi789",
-      actions: "Approve",
-    },
-    {
-      id: 4,
-      vendorName: "Consulting Experts Ltd.",
-      submittedBy: "Rohit Varma",
-      projectName: "Quarterly Conference",
-      receiptPreview: "imagelink",
-      expenseType: "Consulting",
-      submissionDate: "2024-07-12",
-      amount: 15000,
-      status: "Flagged",
-      onChainHash: "0xjkl012",
-      actions: "Approve",
-    },
-    {
-      id: 5,
-      vendorName: "Travel Agency Group",
-      submittedBy: "Rohit Varma",
-      projectName: "Quarterly Conference",
-      receiptPreview: "imagelink",
-      expenseType: "Travel",
-      submissionDate: "2024-07-10",
-      amount: 5400,
-      status: "Verified",
-      onChainHash: "0xmno345",
-      actions: "Approve",
-    },
-    {
-      id: 6,
-      vendorName: "Cloud Services Inc.",
-      submittedBy: "Rohit Varma",
-      projectName: "Quarterly Conference",
-      receiptPreview: "imagelink",
-      expenseType: "Software",
-      submissionDate: "2024-07-08",
-      amount: 7800,
-      status: "Pending",
-      onChainHash: "0xpqr678",
-      actions: "Approve",
-    },
-    {
-      id: 7,
-      vendorName: "Design Studio Pro",
-      submittedBy: "Rohit Varma",
-      projectName: "Quarterly Conference",
-      receiptPreview: "imagelink",
-      expenseType: "Marketing",
-      submissionDate: "2024-07-05",
-      amount: 4200,
-      status: "Verified",
-      onChainHash: "0xstu901",
-      actions: "Approve",
-    },
-    {
-      id: 8,
-      vendorName: "Legal Advisors LLC",
-      submittedBy: "Rohit Varma",
-      projectName: "Quarterly Conference",
-      receiptPreview: "imagelink",
-      expenseType: "Consulting",
-      submissionDate: "2024-07-03",
-      amount: 9500,
-      status: "Flagged",
-      onChainHash: "0xvwx234",
-      actions: "Approve",
-    },
-    {
-      id: 9,
-      vendorName: "Equipment Rental Co.",
-      submittedBy: "Rohit Varma",
-      projectName: "Quarterly Conference",
-      receiptPreview: "imagelink",
-      expenseType: "Supplies",
-      submissionDate: "2024-07-01",
-      amount: 6300,
-      status: "Verified",
-      onChainHash: "0xyza567",
-      actions: "Approve",
-    },
-    {
-      id: 10,
-      vendorName: "Conference Hotels",
-      submittedBy: "Rohit Varma",
-      projectName: "Quarterly Conference",
-      receiptPreview: "imagelink",
-      expenseType: "Travel",
-      submissionDate: "2024-06-28",
-      amount: 3800,
-      status: "Pending",
-      onChainHash: "0xbcd890",
-      actions: "Approve",
-    },
-    {
-      id: 11,
-      vendorName: "Analytics Platform",
-      submittedBy: "Rohit Varma",
-      projectName: "Quarterly Conference",
-      receiptPreview: "imagelink",
-      expenseType: "Software",
-      submissionDate: "2024-06-25",
-      amount: 11200,
-      status: "Verified",
-      onChainHash: "0xefg123",
-      actions: "Approve",
-    },
-    {
-      id: 12,
-      vendorName: "Print Shop Express",
-      submittedBy: "Rohit Varma",
-      projectName: "Quarterly Conference",
-      receiptPreview: "imagelink",
-      expenseType: "Supplies",
-      submissionDate: "2024-06-22",
-      amount: 890,
-      status: "Verified",
-      onChainHash: "0xhij456",
-      actions: "Approve",
-    },
-  ];
+const [expenses, setExpenses] = useState<Expense[]>([]);
+const [loading, setLoading] = useState<boolean>(true);
+const [error, setError] = useState<string | null>(null);
+
+useEffect(() => {
+  const fetchExpenses = async () => {
+    try {
+      setLoading(true);
+      const response = await api.getTableData("Dashboard");
+    //   console.log("API Response:", response);
+
+      const expensesData = Array.isArray(response) ? response :
+                          Array.isArray(response?.data) ? response.data : [];
+
+      const formattedExpenses: Expense[] = expensesData.map((item: any) => ({
+        supaId:item.supaId || 0,
+        id: item.id || 0,
+        vendorName: item.vendor_name || item.vendorName || 'Unknown',
+        submittedBy: item.submitted_by || item.submittedBy || 'Unknown',
+        projectName: item.project_name || item.projectName || '',
+        receiptPreview: item.receipt_url || item.receiptPreview || '',
+        expenseType: item.expense_type || item.expenseType || 'Software',
+        submissionDate: item.submission_date || item.submissionDate || '',
+        amount: parseFloat(item.amount) || 0,
+        status: item.status || 'Pending',
+        onChainHash: item.on_chain_hash || item.onChainHash || '',
+        actions: item.actions || ''
+      }));
+
+    //   console.log("Formatted Expenses:", formattedExpenses);
+      setExpenses(formattedExpenses);
+      setError(null);
+    } catch (err) {
+      console.error("Error fetching expenses:", err);
+      setError("Failed to load expenses. Please try again later.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  fetchExpenses();
+}, []);
+
+// Add a guard for empty or invalid data
+if (!Array.isArray(expenses)) {
+  setExpenses([]);
+    return <></>;
+}
+
+
 
   // Get unique values for filter options
-  const uniqueStatuses: ExpenseStatus[] = [
-    ...new Set(expenses.map((e) => e.status)),
-  ];
-  const uniqueTypes: ExpenseType[] = [
-    ...new Set(expenses.map((e) => e.expenseType)),
-  ];
+  const uniqueStatuses: ExpenseStatus[] = Array.isArray(expenses)
+  ? [...new Set(expenses.map((e) => e.status))]
+  : [];
 
-  // Apply all filters
-  const filteredExpenses: Expense[] = expenses.filter(
-    (expense: Expense): boolean => {
+const uniqueTypes: ExpenseType[] = Array.isArray(expenses)
+  ? [...new Set(expenses.map((e) => e.expenseType))]
+  : [];
+
+// Apply all filters
+const filteredExpenses: Expense[] = Array.isArray(expenses)
+  ? expenses.filter((expense: Expense): boolean => {
+      if (!expense) return false;
+
       const matchesSearch: boolean =
-        expense.vendorName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        expense.expenseType.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        expense.status.toLowerCase().includes(searchTerm.toLowerCase());
+        (expense.vendorName?.toLowerCase() || '').includes(searchTerm.toLowerCase()) ||
+        (expense.expenseType?.toLowerCase() || '').includes(searchTerm.toLowerCase()) ||
+        (expense.status?.toLowerCase() || '').includes(searchTerm.toLowerCase());
 
       const matchesStatus: boolean =
         !statusFilter || expense.status === statusFilter;
@@ -247,8 +180,28 @@ export default function ExpenseTable(): ReactElement {
         matchesDate &&
         matchesAmount
       );
-    },
+    })
+  : [];
+
+if(loading){
+    return <Loader/>
+}
+
+if (error) {
+  return (
+    <div className="flex justify-center items-center h-[655px] bg-[#141414] rounded-2xl border border-gray-50 shadow-neumorphic">
+      <div className="text-red-500 text-center">
+        <p className="text-xl mb-4">{error}</p>
+        <button
+          onClick={() => window.location.reload()}
+          className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+        >
+          Retry
+        </button>
+      </div>
+    </div>
   );
+}
 
   // Pagination calculations
   const totalPages: number = Math.ceil(filteredExpenses.length / itemsPerPage);
@@ -413,13 +366,13 @@ export default function ExpenseTable(): ReactElement {
               </div>
             </div>
             <div>
-              <button className="font-eudoxussans text-xl font-bold p-4 m-2 bg-green-500 rounded-2xl">
+              <button onClick={() => { handleUpdateExpense(currentExpense?.supaId as number, { status: "Verified" }); setChangeStatus(false) }} className="font-eudoxussans text-xl font-bold p-4 m-2 bg-green-500 rounded-2xl">
                 verify
               </button>
-              <button className="font-eudoxussans text-xl font-bold p-4 m-2 bg-yellow-500 rounded-2xl">
+              <button onClick={() => { handleUpdateExpense(currentExpense?.supaId as number, { status: "Pending" });  setChangeStatus(false)}} className="font-eudoxussans text-xl font-bold p-4 m-2 bg-yellow-500 rounded-2xl">
                 pending
               </button>
-              <button className="font-eudoxussans text-xl font-bold p-4 m-2 bg-red-500 rounded-2xl">
+              <button onClick={() => { handleUpdateExpense(currentExpense?.supaId as number, { status: "Flagged" }); setChangeStatus(false) }} className="font-eudoxussans text-xl font-bold p-4 m-2 bg-red-500 rounded-2xl">
                 Flag
               </button>
             </div>

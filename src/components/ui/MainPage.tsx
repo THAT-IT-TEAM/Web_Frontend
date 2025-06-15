@@ -81,6 +81,7 @@ const MainPage = () => {
         {/*Footer */}
         <Footer />
       </motion.div>
+
     </>
   );
 };
