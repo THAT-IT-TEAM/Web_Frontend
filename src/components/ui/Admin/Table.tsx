@@ -50,7 +50,7 @@ export default function ExpenseTable(): ReactElement {
   const handleUpdateExpense = async (expenseId: number, updatedData: Partial<Expense>) => {
     try {
       setLoading(true);
-        await api.updateRecord("Dashboard", expenseId.toString(), {
+        await api.updateRecord("dashboard", expenseId.toString(), {
         vendor_name: updatedData.vendorName,
         submitted_by: updatedData.submittedBy,
         project_name: updatedData.projectName,
@@ -366,13 +366,13 @@ if (error) {
               </div>
             </div>
             <div>
-              <button onClick={() => { handleUpdateExpense(currentExpense?.supaId as number, { status: "Verified" }); setChangeStatus(false) }} className="font-eudoxussans text-xl font-bold p-4 m-2 bg-green-500 rounded-2xl">
+              <button onClick={() => { handleUpdateExpense(currentExpense?.id as number, { status: "Verified" }); setChangeStatus(false) }} className="font-eudoxussans text-xl font-bold p-4 m-2 bg-green-500 rounded-2xl">
                 verify
               </button>
-              <button onClick={() => { handleUpdateExpense(currentExpense?.supaId as number, { status: "Pending" });  setChangeStatus(false)}} className="font-eudoxussans text-xl font-bold p-4 m-2 bg-yellow-500 rounded-2xl">
+              <button onClick={() => { handleUpdateExpense(currentExpense?.id as number, { status: "Pending" });  setChangeStatus(false)}} className="font-eudoxussans text-xl font-bold p-4 m-2 bg-yellow-500 rounded-2xl">
                 pending
               </button>
-              <button onClick={() => { handleUpdateExpense(currentExpense?.supaId as number, { status: "Flagged" }); setChangeStatus(false) }} className="font-eudoxussans text-xl font-bold p-4 m-2 bg-red-500 rounded-2xl">
+              <button onClick={() => { handleUpdateExpense(currentExpense?.id as number, { status: "Flagged" }); setChangeStatus(false) }} className="font-eudoxussans text-xl font-bold p-4 m-2 bg-red-500 rounded-2xl">
                 Flag
               </button>
             </div>
