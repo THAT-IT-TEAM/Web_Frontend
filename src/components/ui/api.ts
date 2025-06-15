@@ -242,28 +242,28 @@ class ApiService {
 
   // New Dashboard APIs
   async getUserDashboardSummary() {
-    const response = await this.client.get("/api/dashboard/user-summary");
+    const response = await this.client.get(`${API_BASE_URL}/api/dashboard/user-summary`);
     return response.data;
   }
 
   async getAdminDashboardSummary() {
-    const response = await this.client.get("/api/dashboard/admin-summary");
+    const response = await this.client.get(`${API_BASE_URL}/api/dashboard/admin-summary`);
     return response.data;
   }
 
   // New Expense Management APIs
   async approveExpense(id: string) {
-    const response = await this.client.post(`/api/expenses/${id}/approve`);
+    const response = await this.client.post(`${API_BASE_URL}/api/expenses/${id}/approve`);
     return response.data;
   }
 
   async rejectExpense(id: string) {
-    const response = await this.client.post(`/api/expenses/${id}/reject`);
+    const response = await this.client.post(`${API_BASE_URL}/api/expenses/${id}/reject`);
     return response.data;
   }
 
   async flagExpense(id: string) {
-    const response = await this.client.post(`/api/expenses/${id}/flag`);
+    const response = await this.client.post(`${API_BASE_URL}/api/expenses/${id}/flag`);
     return response.data;
   }
 
@@ -273,48 +273,16 @@ class ApiService {
     return response.data;
   }
 
-  // New Reports APIs
-  async getUserReports() {
-    const response = await this.client.get("/api/reports/user");
-    return response.data;
-  }
-
-  async getAdminReports() {
-    const response = await this.client.get("/api/reports/admin");
-    return response.data;
-  }
-
-  // Trips Endpoints
-  async getTrips() {
-    const response = await this.client.get("/api/trips");
-    console.log("DEBUG: Raw API response data for /api/trips:", response.data);
-    return response.data.trips;
-  }
-
-  async createTrip(tripData: any) {
-    const response = await this.client.post("/api/trips", tripData);
-    return response.data;
-  }
-
-  async updateTrip(id: string, tripData: any) {
-    const response = await this.client.put(`/api/trips/${id}`, tripData);
-    return response.data;
-  }
-
-  async deleteTrip(id: string) {
-    const response = await this.client.delete(`/api/trips/${id}`);
-    return response.data;
-  }
 
   // New Project Teams APIs
   async getProjectMembers(tripId: string) {
-    const response = await this.client.get(`/api/trips/${tripId}/members`);
+    const response = await this.client.get(`${API_BASE_URL}/api/trips/${tripId}/members`);
     return response.data.members;
   }
 
   async getTeamMemberExpenses(tripId: string, userId: string) {
     const response = await this.client.get(
-      `/api/trips/${tripId}/members/${userId}/expenses`
+      `${API_BASE_URL}/api/trips/${tripId}/members/${userId}/expenses`
     );
     return response.data.expenses;
   }
@@ -347,7 +315,104 @@ async getUserIdByEmail(email: string): Promise<{ userId: string }> {
   }
 }
 
+
+  async getUserReports() {
+    const response = await this.client.get('${API_BASE_URL}/api/reports/user');
+    return response.data;
+  }
+
+  async getAdminReports() {
+    const response = await this.client.get('${API_BASE_URL}/api/reports/admin');
+    return response.data;
+  }
+
+  // Trips Endpoints
+  async getTrips() {
+    const response = await this.client.get('${API_BASE_URL}/api/trips');
+    return response.data.trips;
+  }
+
+  async createTrip(tripData: any) {
+    const response = await this.client.post('https://good-polecat-enormously.ngrok-free.app/api/trips', tripData);
+    return response.data;
+  }
+
+  async updateTrip(id: string, tripData: any) {
+    const response = await this.client.put(`${API_BASE_URL}/api/trips/${id}`, tripData);
+    return response.data;
+  }
+
+  async deleteTrip(id: string) {
+    const response = await this.client.delete(`${API_BASE_URL}/api/trips/${id}`);
+    return response.data;
+  }
+
+  // Trip Reports endpoints
+  async getTripReports() {
+    try {
+      const response = await this.client.get(`${API_BASE_URL}/api/trip_reports`);
+      console.log(response)
+      // Check if response is HTML
+      const contentType = response.headers['content-type'];
+      if (contentType && contentType.includes('text/html')) {
+        throw new Error('Received HTML response instead of JSON');
+      }
+
+      return response.data;
+    } catch (error: any) {
+      if (error.response?.headers['content-type']?.includes('text/html')) {
+        console.error('Received HTML response from server');
+        throw new Error('Invalid server response format');
+      }
+      this.handleError('Error fetching trip reports', error);
+      throw error;
+    }
+  }
+
+  async getTripReportById(id: string) {
+    const response = await this.client.get(`${API_BASE_URL}/api/trip_reports/${id}`);
+    return response.data; // Assuming it returns the report directly
+  }
+
+  async createTripReport(data: {
+    trip_id: string;
+    report_name: string;
+    summary: string;
+    status: string;
+  }) {
+    try {
+      const response = await this.client.post(`${API_BASE_URL}/api/trip_reports`, data);
+      return response.data;
+    } catch (error) {
+      this.handleError('Error creating trip report', error);
+      throw error;
+    }
+  }
+
+  async updateTripReport(id: string, updates: any) {
+  const response = await this.client.patch(`${API_BASE_URL}/api/trip_reports/${id}`, updates); // Using PATCH for partial updates
+  return response.data;}
+
+  async deleteTripReport(id: number) {
+    try {
+      const response = await this.client.delete(`${API_BASE_URL}/api/trip_reports/${id}`);
+      return response.data;
+    } catch (error) {
+      this.handleError('Error deleting trip report', error);
+      throw error;
+    }
+  }
+
+
+
+  // Add handleError method to handle errors
+  private handleError(message: string, error: any) {
+    console.error(message, error);
+  }
 }
+
+
+
 
 
 

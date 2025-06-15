@@ -28,9 +28,9 @@ export const SlideTabs = () => {
     >
       <Tab setPosition={setPosition}>Dashboard</Tab>
       <Tab setPosition={setPosition}>Trips</Tab>
-      <Tab setPosition={setPosition}>Vendors</Tab>
+
       <Tab setPosition={setPosition}>Reports</Tab>
-      <Tab setPosition={setPosition}>Team</Tab>
+
 
       <Cursor position={position} />
     </ul>
@@ -65,6 +65,7 @@ const Tab = ({
       onClick={()=>{
         if(children==='Trips')navigate("/trips")
         else if (children==="Dashboard")navigate("/admin")
+        else if(children==='Reports')navigate("/reports")
         }}
     >
       {children}

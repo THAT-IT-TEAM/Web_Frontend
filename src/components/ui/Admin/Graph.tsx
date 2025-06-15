@@ -1,5 +1,26 @@
+import { useEffect, useState } from "react";
+import api from "../api";
 import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis } from "recharts";
+import Loader from "../SquareLoader";
 const Graph = () => {
+    const [expense , setExpense] = useState([])
+    const [loading,setLoading] = useState(false)
+        useEffect(()=>{
+            setLoading(true)
+        const fetchData = async()=>{
+        const response = await api.getExpenses();
+        console.log(response)
+            setExpense(response)
+            setLoading(false)
+        }
+        fetchData()
+    },[])
+
+
+    if(loading){
+        return <Loader/>
+    }
+
   const data = [
     {
       name: "1",
@@ -58,14 +79,14 @@ const Graph = () => {
             <LineChart
               width={1000}
               height={500}
-              data={data}
+              data={expense}
               margin={{ right: 30, top: 30, left: 30 }}
             >
-              <XAxis dataKey="name" />
+              <XAxis dataKey="transaction_date" />
 
               <Tooltip content={<CustomTooltip />} cursor={false} />
               <Line
-                dataKey="plot"
+                dataKey="amount"
                 stroke="#ffffff"
                 fill="#161616"
                 type="monotone"

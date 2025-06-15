@@ -43,7 +43,6 @@ export default function ExpenseTable(): ReactElement {
   const [showFilters, setShowFilters] = useState<boolean>(false);
   const [showImage, setShowImage] = useState<boolean>(false);
   const [changeStatus, setChangeStatus] = useState<boolean>(false);
-  const [status,setStatus] = useState<string>("pending")
   const [currentExpense, setCurrentExpense] = useState<Expense | null>(null);
 
   // Function to update expense data
@@ -336,7 +335,7 @@ if (error) {
             onClick={() => setShowImage(false)}
           />
           <img
-            src="src\assets\images\User_Dashboard.png"
+            src="src/assets/images/receipt.jpg"
             className="shadow-neumorphic max-h-[1000px] max-w-[1000px]"
           />
         </div>
@@ -587,7 +586,7 @@ if (error) {
                       onClick={() => setShowImage(true)}
                     >
                       <img
-                        src="src\assets\images\profile.jpeg"
+                        src="src/assets/images/receipt.jpg"
                         className="ml-10 rounded-full"
                         height={40}
                         width={40}

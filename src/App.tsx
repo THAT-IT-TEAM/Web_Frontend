@@ -8,6 +8,8 @@ import Admin from "./components/ui/Admin/Admin";
 import TripsList from "./components/ui/TripsList";
 import LoginWalletFlip from "./components/ui/LoginWalletFlip";
 import NewTrip from "./components/ui/NewTrip";
+import Reports from "./components/ui/Admin/Reports";
+import TripReports from "./components/ui/Admin/TripReports";
 
 function App() {
   const location = useLocation();
@@ -35,6 +37,8 @@ function App() {
         <Route path="/admin" element={<Admin />} />
         <Route path="/trips" element={<TripsList/>}/>
         <Route path="/newTrip" element={<NewTrip/>}/>
+        <Route path="/reports" element={<Reports/>}/>
+        <Route path="/newAdminReport" element={<TripReports/>}/>
       </Routes>
     </AnimatePresence>
   );

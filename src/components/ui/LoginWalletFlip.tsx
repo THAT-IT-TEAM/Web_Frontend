@@ -77,15 +77,7 @@ const LoginWalletFlip = () => {
                   <div className="w-[60px] h-[60px] bg-white rotate-45 absolute z-[100] top-[-52px] left-[-52px] peer-checked:top-[-10px] peer-checked:left-[-10px] transition-all duration-300 ease-in-out"></div>
                 </label>
                 <p className="text-white px-[10px] -translate-y-1">User</p>
-                <label className="relative block w-[15px] h-[15px] cursor-pointer border-[3px] border-transparent rounded-[10px] shadow-[0_0_0_2px_#fff] overflow-hidden text-white">
-                  <input
-                    name="type"
-                    type="radio"
-                    className="absolute left-[50px] invisible peer"
-                  />
-                  <div className="w-[60px] h-[60px] bg-white rotate-45 absolute z-[100] top-[-52px] left-[-52px] peer-checked:top-[-10px] peer-checked:left-[-10px] transition-all duration-300 ease-in-out"></div>
-                </label>
-                <p className="text-white px-[10px] -translate-y-1">Vendor</p>
+
               </div>
               <input
                 type="email"
